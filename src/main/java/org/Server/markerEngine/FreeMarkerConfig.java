@@ -5,6 +5,7 @@ import freemarker.template.TemplateExceptionHandler;
 
 import java.io.File;
 
+
 public class FreeMarkerConfig {
     private static Configuration configuration;
     public static Configuration getConfiguration() {

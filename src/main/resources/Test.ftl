@@ -7,11 +7,6 @@
 </head>
 <body>
     <h1>Hello, ${name!"Guest"}!</h1>
-
-     <ul>
-           <#list items as item>
-                <li>${item}</li>
-            </#list>
-        </ul>
+    <h1> ${response} </h1>
 </body>
 </html>

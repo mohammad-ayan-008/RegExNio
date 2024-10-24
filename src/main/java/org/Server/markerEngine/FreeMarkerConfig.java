@@ -3,8 +3,6 @@ package org.Server.markerEngine;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 
-import java.io.File;
-
 
 
 public class FreeMarkerConfig {

@@ -89,6 +89,11 @@ public class Main {
     private static Response parseResponse(String resp) throws URISyntaxException {
         Response response = new Response();
         final String[] split = resp.trim().split("\n");
+        System.out.println(resp);
+        if (resp.isEmpty()){
+            response.setMethod("POSt");
+            return response;
+        }
         response.setMethod(split[0].split(" ")[0]);
         response.setURL(split[0].split(" ")[1]);
         for(String line: split){
@@ -113,9 +118,11 @@ public class Main {
                     params.putParam(key,value);
                 }
             }else {
-                String key = query.split("=")[0];
-                String value = query.split("=")[1];
-                params.putParam(key,value);
+                if (query != null){
+                    String key = query.split("=")[0];
+                    String value = query.split("=")[1];
+                    params.putParam(key, value);
+               }
             }
             response.setParam(params);
 
@@ -257,14 +264,15 @@ public class Main {
         }
     }
 
-    public static void handlePostRequest(SocketChannel accept,String response) throws IOException, InvocationTargetException, IllegalAccessException {
+    public static void handlePostRequest(SocketChannel accept,String response) throws IOException, InvocationTargetException, IllegalAccessException, URISyntaxException {
         System.out.println("Entered");
         Method method = METHOD_POST.get(ExtractRoute(response));
         if (method != null && !method.isAnnotationPresent(ParseHtmlFille.class)) {
             System.out.println("Entered 2");
+            Response response1 = parseResponse(response);
             String[] split = response.split("\n");
             String s = URLDecoder.decode(split[split.length - 1], StandardCharsets.UTF_8.name());
-            String data = (String) method.invoke(instance,s);
+            String data = (String) method.invoke(instance,response1);
             writeToSocket(accept, data);
         }
     }

@@ -1,6 +1,6 @@
 
 
-# Custom Java NIO HTTP Server (RegExNio)
+# Java NIO HTTP Server (RegExNio)
 
 This project is a simple HTTP server built using Java NIO (Non-blocking I/O) and the FreeMarker templating engine. The server handles basic GET and POST requests using a custom MVC-style framework.
 
